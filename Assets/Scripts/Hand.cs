@@ -4,6 +4,7 @@ public class Hand : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private Collider handCollider;
+    [SerializeField] private float hitForce = 10f;
 
     public void Hit()
     {
@@ -15,12 +16,13 @@ public class Hand : MonoBehaviour
     {
         handCollider.enabled = false;
     }
-    
-    private void OnTriggerEnter(Collider other)
+
+    void OnCollisionEnter(Collision collision) 
     {
-        if (other.CompareTag("Dummy") && other.TryGetComponent<Dummy>(out var dummy))
+        if (collision.gameObject.CompareTag("Dummy") && collision.gameObject.TryGetComponent<Dummy>(out var dummy)) 
         {
-            dummy.TakeHit();
+            var hitDirection = transform.position - collision.transform.position;
+            dummy.TakeHit(hitDirection, hitForce);
         }
     }
 }

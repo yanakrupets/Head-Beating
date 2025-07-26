@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 135649305}
   - component: {fileID: 135649304}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Eye L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -729,9 +729,9 @@ GameObject:
   - component: {fileID: 917837674}
   - component: {fileID: 917837677}
   - component: {fileID: 917837676}
+  - component: {fileID: 917837679}
   - component: {fileID: 917837675}
   - component: {fileID: 917837678}
-  - component: {fileID: 917837679}
   m_Layer: 0
   m_Name: Right Hand
   m_TagString: Hand
@@ -769,7 +769,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
@@ -861,6 +861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 917837678}
   handCollider: {fileID: 917837675}
+  hitForce: 10
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,7 +1080,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!135 &1030803345
 SphereCollider:
@@ -1088,7 +1089,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030803342}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bed5c7078728bc44a81d1f0b302f8058, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1116,6 +1117,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1990651287}
   vfxController: {fileID: 1462892471}
+  rb: {fileID: 1030803344}
+  returnSpeed: 50
+  damping: 2
 --- !u!1 &1201429918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,9 +1482,9 @@ GameObject:
   - component: {fileID: 1873443974}
   - component: {fileID: 1873443977}
   - component: {fileID: 1873443976}
+  - component: {fileID: 1873443979}
   - component: {fileID: 1873443975}
   - component: {fileID: 1873443978}
-  - component: {fileID: 1873443979}
   m_Layer: 0
   m_Name: Left Hand
   m_TagString: Hand
@@ -1518,7 +1522,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
@@ -1610,6 +1614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1873443978}
   handCollider: {fileID: 1873443975}
+  hitForce: 10
 --- !u!1 &1889963967
 GameObject:
   m_ObjectHideFlags: 0

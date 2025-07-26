@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.VFX;
 
 public class VFXController : MonoBehaviour
@@ -6,7 +7,7 @@ public class VFXController : MonoBehaviour
     [SerializeField] private VisualEffect visualEffect;
     [SerializeField] private float radius;
     
-    [SerializeField] private BubbleColorData bubbleColorData;
+    [FormerlySerializedAs("bubbleColorData")] [SerializeField] private BubbleData bubbleData;
 
     public void Play()
     {
@@ -27,11 +28,14 @@ public class VFXController : MonoBehaviour
 
     private void SetRandomSetting()
     {
-        var set = bubbleColorData.GetRandomSet();
+        var set = bubbleData.GetRandomSet();
         visualEffect.SetVector4("Color", set.color);
         visualEffect.SetVector4("Dots Color", set.dotsColor);
         
-        var textColor = bubbleColorData.GetRandomTextColor();
+        var textColor = set.GetRandomTextColor();
         visualEffect.SetVector4("Text Color", textColor);
+        
+        visualEffect.SetTexture("Bubble Texture2D", bubbleData.GetRandomBubbleTexture());
+        visualEffect.SetTexture("Text Texture2D", bubbleData.GetRandomTextTexture());
     }
 }

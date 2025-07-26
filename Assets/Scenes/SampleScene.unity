@@ -1290,8 +1290,8 @@ VisualEffect:
   m_GameObject: {fileID: 1462892466}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 58743e19dd59d9f4e97379ed5a4cf10a, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -1361,7 +1361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualEffect: {fileID: 1462892468}
   radius: 1
-  bubbleColorData: {fileID: 11400000, guid: 77166156b10f1b44c91c09f392ea86b7, type: 2}
+  bubbleData: {fileID: 11400000, guid: 77166156b10f1b44c91c09f392ea86b7, type: 2}
 --- !u!1 &1777105017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,7 +1620,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1889963968}
   - component: {fileID: 1889963971}
-  - component: {fileID: 1889963970}
   - component: {fileID: 1889963969}
   m_Layer: 0
   m_Name: VFX Camera
@@ -1688,14 +1687,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1889963970
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889963967}
-  m_Enabled: 1
 --- !u!20 &1889963971
 Camera:
   m_ObjectHideFlags: 0

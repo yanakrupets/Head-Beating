@@ -9,7 +9,27 @@ public class Hand : MonoBehaviour
     public void Hit()
     {
         handCollider.enabled = true;
+        StopCharge();
         animator.SetTrigger("Attack");
+        hitForce = 10f;
+    }
+
+    public void ChargedHit()
+    {
+        handCollider.enabled = true;
+        StopCharge();
+        animator.SetTrigger("Attack");
+        hitForce = 50f;
+    }
+    
+    public void StartCharge()
+    {
+        animator.SetBool("Charge", true);
+    }
+
+    public void StopCharge()
+    {
+        animator.SetBool("Charge", false);
     }
     
     public void OnAnimationEnd()

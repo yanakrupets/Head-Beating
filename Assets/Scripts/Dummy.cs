@@ -41,6 +41,7 @@ public class Dummy : MonoBehaviour
             Random.Range(-30f, 30f),
             Random.Range(-30f, 30f)) * hitForce * 0.1f);
         
+        animator.SetTrigger("Take Hit");
         vfxController.Play();
     }
 }

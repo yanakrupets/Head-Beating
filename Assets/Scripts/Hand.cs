@@ -23,6 +23,12 @@ public class Hand : MonoBehaviour
         {
             var hitDirection = transform.position - collision.transform.position;
             dummy.TakeHit(hitDirection, hitForce);
+            
+            var contact = collision.contacts[0];
+            if (collision.gameObject.TryGetComponent<DecalPainter>(out var decalPainter))
+            {
+                decalPainter.Paint(contact.point, contact.normal);
+            }
         }
     }
 }

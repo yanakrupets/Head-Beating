@@ -4,6 +4,7 @@ public class Dummy : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private VFXController vfxController;
+    [SerializeField] private SoundController soundController;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float returnSpeed = 5f;
     [SerializeField] private float damping = 2f;
@@ -40,6 +41,8 @@ public class Dummy : MonoBehaviour
             Random.Range(-30f, 30f),
             Random.Range(-30f, 30f),
             Random.Range(-30f, 30f)) * hitForce * 0.1f);
+        
+        soundController.PlayRandomSound();
         
         animator.SetTrigger("Take Hit");
         vfxController.Play();

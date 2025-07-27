@@ -24,7 +24,7 @@ public class DecalPainter : MonoBehaviour
     {
         yield return new WaitForSeconds(decalLifetime);
         
-        float elapsedTime = 0f;
+        var elapsedTime = 0f;
         var start = decal.fadeFactor;
         while (elapsedTime < decalExitTime)
         {

@@ -1,25 +1,40 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Hand : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private Collider handCollider;
-    [SerializeField] private float hitForce = 10f;
+    [SerializeField] private VisualEffect visualEffect;
+    [SerializeField] private HitData[] hitData;
+
+    private Dictionary<HitType, HitData> _hitDataDictionary;
+    private HitType _currentHitType;
+
+    private void Awake()
+    {
+        _hitDataDictionary = new Dictionary<HitType, HitData>();
+        foreach (var data in hitData)
+        {
+            _hitDataDictionary[data.HitType] = data;
+        }
+    }
 
     public void Hit()
     {
+        _currentHitType = HitType.Normal;
         handCollider.enabled = true;
         StopCharge();
         animator.SetTrigger("Attack");
-        hitForce = 10f;
     }
 
     public void ChargedHit()
     {
+        _currentHitType = HitType.Charged;
         handCollider.enabled = true;
         StopCharge();
         animator.SetTrigger("Attack");
-        hitForce = 50f;
     }
     
     public void StartCharge()
@@ -30,6 +45,19 @@ public class Hand : MonoBehaviour
     public void StopCharge()
     {
         animator.SetBool("Charge", false);
+    }
+
+    public void FullCharge(bool isCharged)
+    {
+        if (isCharged)
+        {
+            visualEffect.Play();
+        }
+        else
+        {
+            visualEffect.Stop();
+            visualEffect.Reinit();
+        }
     }
     
     public void OnAnimationEnd()
@@ -42,7 +70,7 @@ public class Hand : MonoBehaviour
         if (collision.gameObject.CompareTag("Dummy") && collision.gameObject.TryGetComponent<Dummy>(out var dummy)) 
         {
             var hitDirection = transform.position - collision.transform.position;
-            dummy.TakeHit(hitDirection, hitForce);
+            dummy.TakeHit(hitDirection, _hitDataDictionary[_currentHitType]);
             
             var contact = collision.contacts[0];
             if (collision.gameObject.TryGetComponent<DecalPainter>(out var decalPainter))

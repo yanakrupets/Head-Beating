@@ -3,7 +3,7 @@ using UnityEngine;
 public class Dummy : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private VFXController vfxController;
+    [SerializeField] private HitVFXController hitVFXController;
     [SerializeField] private SoundController soundController;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float returnSpeed = 5f;
@@ -33,18 +33,17 @@ public class Dummy : MonoBehaviour
         rb.AddTorque(axis.normalized * (angle * 0.1f) - rb.angularVelocity * damping);
     }
     
-    public void TakeHit(Vector3 hitDirection, float hitForce)
+    public void TakeHit(Vector3 hitDirection, HitData data)
     {
-        rb.AddForce(hitDirection.normalized * hitForce, ForceMode.Impulse);
+        rb.AddForce(hitDirection.normalized * data.Force, ForceMode.Impulse);
         
         rb.AddTorque(new Vector3(
             Random.Range(-30f, 30f),
             Random.Range(-30f, 30f),
-            Random.Range(-30f, 30f)) * hitForce * 0.1f);
+            Random.Range(-30f, 30f)) * data.Force * 0.1f);
         
         soundController.PlayRandomSound();
-        
         animator.SetTrigger("Take Hit");
-        vfxController.Play();
+        hitVFXController.Play(data.HitType);
     }
 }

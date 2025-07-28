@@ -1,9 +1,17 @@
 using System.Collections.Generic;
+using System.Linq;
+using Enums;
+using Serializable;
 using UnityEngine;
 using UnityEngine.VFX;
 
 public class Hand : MonoBehaviour
 {
+    private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int Charge = Animator.StringToHash("Charge");
+    
+    private const string DummyTag = "Dummy";
+    
     [SerializeField] private Animator animator;
     [SerializeField] private Collider handCollider;
     [SerializeField] private VisualEffect visualEffect;
@@ -14,11 +22,7 @@ public class Hand : MonoBehaviour
 
     private void Awake()
     {
-        _hitDataDictionary = new Dictionary<HitType, HitData>();
-        foreach (var data in hitData)
-        {
-            _hitDataDictionary[data.HitType] = data;
-        }
+        _hitDataDictionary = hitData.ToDictionary(x => x.HitType);
     }
 
     public void Hit()
@@ -26,7 +30,7 @@ public class Hand : MonoBehaviour
         _currentHitType = HitType.Normal;
         handCollider.enabled = true;
         StopCharge();
-        animator.SetTrigger("Attack");
+        animator.SetTrigger(Attack);
     }
 
     public void ChargedHit()
@@ -34,17 +38,17 @@ public class Hand : MonoBehaviour
         _currentHitType = HitType.Charged;
         handCollider.enabled = true;
         StopCharge();
-        animator.SetTrigger("Attack");
+        animator.SetTrigger(Attack);
     }
     
     public void StartCharge()
     {
-        animator.SetBool("Charge", true);
+        animator.SetBool(Charge, true);
     }
 
     public void StopCharge()
     {
-        animator.SetBool("Charge", false);
+        animator.SetBool(Charge, false);
     }
 
     public void FullCharge(bool isCharged)
@@ -65,9 +69,9 @@ public class Hand : MonoBehaviour
         handCollider.enabled = false;
     }
 
-    void OnCollisionEnter(Collision collision) 
+    private void OnCollisionEnter(Collision collision) 
     {
-        if (collision.gameObject.CompareTag("Dummy") && collision.gameObject.TryGetComponent<Dummy>(out var dummy)) 
+        if (collision.gameObject.CompareTag(DummyTag) && collision.gameObject.TryGetComponent<Dummy>(out var dummy)) 
         {
             var hitDirection = transform.position - collision.transform.position;
             dummy.TakeHit(hitDirection, _hitDataDictionary[_currentHitType]);

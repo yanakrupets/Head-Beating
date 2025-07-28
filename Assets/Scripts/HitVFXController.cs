@@ -1,3 +1,5 @@
+using Enums;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -7,6 +9,7 @@ public class HitVFXController : MonoBehaviour
     [SerializeField] private VisualEffect chargedHitVisualEffect;
     [SerializeField] private float radius;
     
+    [Space]
     [SerializeField] private BubbleData bubbleData;
 
     public void Play(HitType hitType)
@@ -52,8 +55,8 @@ public class HitVFXController : MonoBehaviour
     private void SetRandomHitSetting()
     {
         var set = bubbleData.GetRandomSet();
-        hitVisualEffect.SetVector4("Color", set.color);
-        hitVisualEffect.SetVector4("Dots Color", set.dotsColor);
+        hitVisualEffect.SetVector4("Color", set.Color);
+        hitVisualEffect.SetVector4("Dots Color", set.DotsColor);
         
         var textColor = set.GetRandomTextColor();
         hitVisualEffect.SetVector4("Text Color", textColor);
@@ -65,7 +68,7 @@ public class HitVFXController : MonoBehaviour
     private void SetRandomChargedHitSetting()
     {
         var set = bubbleData.GetRandomSet();
-        chargedHitVisualEffect.SetVector4("Color", set.color);
-        chargedHitVisualEffect.SetVector4("Dots Color", set.dotsColor);
+        chargedHitVisualEffect.SetVector4("Color", set.Color);
+        chargedHitVisualEffect.SetVector4("Dots Color", set.DotsColor);
     }
 }

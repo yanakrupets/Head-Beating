@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615024}
   - {fileID: 8926484042661615026}
   - {fileID: 8926484042661615034}
-  - {fileID: 8926484042661615206}
+  - {fileID: 8926484042661615569}
   - {fileID: 8926484042661615208}
   - {fileID: 8926484042661615215}
   - {fileID: 8926484042661615235}
@@ -145,7 +145,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VFX
+  m_Name: Bubble
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -379,7 +379,7 @@ MonoBehaviour:
       slotIndex: 0
   m_OutputFlowSlot:
   - link:
-    - context: {fileID: 8926484042661615206}
+    - context: {fileID: 8926484042661615569}
       slotIndex: 0
 --- !u!114 &8926484042661614662
 MonoBehaviour:
@@ -844,7 +844,7 @@ MonoBehaviour:
   title: Bubble
   m_Owners:
   - {fileID: 8926484042661614661}
-  - {fileID: 8926484042661615206}
+  - {fileID: 8926484042661615569}
   - {fileID: 8926484042661614679}
   dataType: 0
   capacity: 1
@@ -980,7 +980,7 @@ MonoBehaviour:
   m_Data: {fileID: 8926484042661614675}
   m_InputFlowSlot:
   - link:
-    - context: {fileID: 8926484042661615206}
+    - context: {fileID: 8926484042661615569}
       slotIndex: 0
   m_OutputFlowSlot:
   - link: []
@@ -5357,7 +5357,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":3.0,"y":5.0}'
+      m_SerializableObject: '{"x":5.0,"y":5.0}'
     m_Space: 2147483647
   m_Property:
     name: B
@@ -5860,41 +5860,6 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
   m_LinkedSlots: []
---- !u!114 &8926484042661615206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dc095764ededfa4bb32fa602511ea4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 114350483966674976}
-  m_Children: []
-  m_UIPosition: {x: 808, y: 707}
-  m_UICollapsed: 0
-  m_UISuperCollapsed: 0
-  m_InputSlots: []
-  m_OutputSlots: []
-  m_Label: 
-  m_Data: {fileID: 8926484042661614675}
-  m_InputFlowSlot:
-  - link:
-    - context: {fileID: 8926484042661614661}
-      slotIndex: 0
-  m_OutputFlowSlot:
-  - link:
-    - context: {fileID: 8926484042661614679}
-      slotIndex: 0
-  integration: 0
-  angularIntegration: 0
-  ageParticles: 1
-  reapParticles: 1
-  skipZeroDeltaUpdate: 0
 --- !u!114 &8926484042661615208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8992,3 +8957,38 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 8926484042661615195}
+--- !u!114 &8926484042661615569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc095764ededfa4bb32fa602511ea4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 114350483966674976}
+  m_Children: []
+  m_UIPosition: {x: 808, y: 707}
+  m_UICollapsed: 0
+  m_UISuperCollapsed: 0
+  m_InputSlots: []
+  m_OutputSlots: []
+  m_Label: 
+  m_Data: {fileID: 8926484042661614675}
+  m_InputFlowSlot:
+  - link:
+    - context: {fileID: 8926484042661614661}
+      slotIndex: 0
+  m_OutputFlowSlot:
+  - link:
+    - context: {fileID: 8926484042661614679}
+      slotIndex: 0
+  integration: 0
+  angularIntegration: 0
+  ageParticles: 1
+  reapParticles: 1
+  skipZeroDeltaUpdate: 0

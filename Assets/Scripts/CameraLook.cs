@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class CameraLook : MonoBehaviour
 {
@@ -7,22 +8,22 @@ public class CameraLook : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     
     [Header("Input Action Reference")]
-    [SerializeField] private InputActionReference lookActionReference;
+    [SerializeField] private InputActionReference cameraActionReference;
 
-    private float _xRotation = 0f;
+    private float _xRotation;
 
     private void OnEnable()
     {
-        lookActionReference.action.performed += HandleLookInput;
+        cameraActionReference.action.performed += HandleCameraInput;
         
-        lookActionReference.action.Enable();
+        cameraActionReference.action.Enable();
     }
 
     private void OnDisable()
     {
-        lookActionReference.action.performed -= HandleLookInput;
+        cameraActionReference.action.performed -= HandleCameraInput;
         
-        lookActionReference.action.Disable();
+        cameraActionReference.action.Disable();
     }
 
     private void Start()
@@ -30,7 +31,7 @@ public class CameraLook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void HandleLookInput(InputAction.CallbackContext context)
+    private void HandleCameraInput(InputAction.CallbackContext context)
     {
         var lookInput = context.ReadValue<Vector2>() * mouseSensitivity * Time.deltaTime;
         

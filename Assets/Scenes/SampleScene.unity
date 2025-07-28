@@ -471,7 +471,7 @@ MonoBehaviour:
   rightHand: {fileID: 917837679}
   leftHand: {fileID: 1873443979}
   chargeDuration: 1
-  clickThreshold: 0.15
+  clickThreshold: 0.2
   attackActionReference: {fileID: -1395651274228226615, guid: 5b7e944f719b4504c9e50405bfeb32a4, type: 3}
 --- !u!1 &705507993
 GameObject:
@@ -1046,9 +1046,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c4aa9262c04fc24eac3f2498d29fb05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivity: 50
   playerTransform: {fileID: 605508777}
-  lookActionReference: {fileID: -8687709435503518855, guid: 5b7e944f719b4504c9e50405bfeb32a4, type: 3}
+  cameraActionReference: {fileID: -8687709435503518855, guid: 5b7e944f719b4504c9e50405bfeb32a4, type: 3}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,9 +1156,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 4
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1030803345
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1198,6 +1198,7 @@ MonoBehaviour:
   rb: {fileID: 1030803344}
   returnSpeed: 100
   damping: 1
+  rotationResponseFactor: 0.1
 --- !u!114 &1030803347
 MonoBehaviour:
   m_ObjectHideFlags: 0

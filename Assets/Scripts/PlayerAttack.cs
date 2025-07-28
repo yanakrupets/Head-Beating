@@ -7,11 +7,11 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Hand rightHand;
     [SerializeField] private Hand leftHand;
     
-    [Header("Settings")]
+    [Header("Attack Settings")]
     [SerializeField] private float chargeDuration = 2f;
     [SerializeField] private float clickThreshold = 0.1f;
     
-    [Header("Input Action")]
+    [Header("Input Action Reference")]
     [SerializeField] private InputActionReference attackActionReference;
     
     private Hand _currentHand;
@@ -68,25 +68,28 @@ public class PlayerAttack : MonoBehaviour
     
     private void Update()
     {
-        if (!_isCharging && attackActionReference.action.IsPressed() && 
-            Time.time - _pressTime >= clickThreshold && !_isFullCharge)
+        if (IsReadyToCharge())
         {
-            StartCharging();
+            _isCharging = true;
+            _currentHand.StartCharge();
         }
         
-        if (_isCharging && Time.time - _pressTime >= chargeDuration && !_isFullCharge)
+        if (IsFullCharged())
         {
             _isCharging = false;
             _isFullCharge = true;
             _currentHand.FullCharge(_isFullCharge);
         }
     }
-    
-    private void StartCharging()
-    {
-        _isCharging = true;
-        _currentHand.StartCharge();
-    }
+
+    private bool IsReadyToCharge()
+        => !_isCharging
+           && attackActionReference.action.IsPressed()
+           && Time.time - _pressTime >= clickThreshold
+           && !_isFullCharge;
+
+    private bool IsFullCharged()
+        => _isCharging && Time.time - _pressTime >= chargeDuration && !_isFullCharge;
 
     private void ExecuteNormalAttack()
     {

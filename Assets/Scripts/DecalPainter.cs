@@ -6,6 +6,8 @@ public class DecalPainter : MonoBehaviour
 {
     [SerializeField] private DecalProjector decalProjectorPrefab;
     [SerializeField] private Transform parentTransform;
+    
+    [Header("Decal Settings")]
     [SerializeField] private float decalLifetime = 2f;
     [SerializeField] private float decalExitTime = 1f;
     [SerializeField] private float decalSize = 0.2f;

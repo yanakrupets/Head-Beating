@@ -1,36 +1,37 @@
+using Serializable;
 using UnityEngine;
 
 public class Dummy : MonoBehaviour
 {
+    private static readonly int Property = Animator.StringToHash("Take Hit");
+    
     [SerializeField] private Animator animator;
     [SerializeField] private HitVFXController hitVFXController;
     [SerializeField] private SoundController soundController;
     [SerializeField] private Rigidbody rb;
+    
+    [Header("Movement Settings")]
     [SerializeField] private float returnSpeed = 5f;
     [SerializeField] private float damping = 2f;
+    [SerializeField] private float rotationResponseFactor = 0.1f;
     
     private Vector3 _originalPosition;
     private Quaternion _originalRotation;
 
-    void Start() 
+    private void Start() 
     {
-        rb = GetComponent<Rigidbody>();
-        
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
-        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        
         _originalPosition = transform.position;
         _originalRotation = transform.rotation;
     }
     
-    void FixedUpdate() 
+    private void FixedUpdate() 
     {
-        Vector3 force = (_originalPosition - transform.position) * returnSpeed;
+        var force = (_originalPosition - transform.position) * returnSpeed;
         rb.AddForce(force - rb.velocity * damping);
     
-        Quaternion deltaRot = _originalRotation * Quaternion.Inverse(transform.rotation);
+        var deltaRot = _originalRotation * Quaternion.Inverse(transform.rotation);
         deltaRot.ToAngleAxis(out var angle, out var axis);
-        rb.AddTorque(axis.normalized * (angle * 0.1f) - rb.angularVelocity * damping);
+        rb.AddTorque(axis.normalized * (angle * rotationResponseFactor) - rb.angularVelocity * damping);
     }
     
     public void TakeHit(Vector3 hitDirection, HitData data)
@@ -40,10 +41,10 @@ public class Dummy : MonoBehaviour
         rb.AddTorque(new Vector3(
             Random.Range(-30f, 30f),
             Random.Range(-30f, 30f),
-            Random.Range(-30f, 30f)) * data.Force * 0.1f);
+            Random.Range(-30f, 30f)) * data.Force * rotationResponseFactor);
         
         soundController.PlayRandomSound();
-        animator.SetTrigger("Take Hit");
+        animator.SetTrigger(Property);
         hitVFXController.Play(data.HitType);
     }
 }
